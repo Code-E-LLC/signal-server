@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <script>
+      var ws = new WebSocket("ws://localhost:8000");
+      // event emmited when connected
+      ws.onopen = function() {
+        console.log("websocket is connected ...");
+        // sending a send event to websocket server
+        ws.send("connected");
+      };
+      // event emmited when receiving message
+      ws.onmessage = function(ev) {
+        console.log(ev);
+      };
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        ws.send(event.target.elements[0].value);
+      }
+    </script>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

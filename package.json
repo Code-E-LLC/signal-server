@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.ts --target node",
-    "build": "parcel build src/index.ts --target node"
+    "prestart": "npm run clean",
+    "build": "parcel build src/index.ts --target node",
+    "prebuild": "npm run clean",
+    "copy_public": "mkdir dist && cp -R public/* dist/",
+    "clean": "rimraf dist && npm run copy_public"
   },
   "repository": {
     "type": "git",
@@ -27,6 +31,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "express": "^4.17.1",
     "ws": "^7.1.0"
   }
